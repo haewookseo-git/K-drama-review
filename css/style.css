@@ -1,0 +1,460 @@
+/* Netflix K-Drama Review Styles */
+
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color: #141414;
+    color: #ffffff;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header */
+.header {
+    background-color: #000000;
+    padding: 20px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    color: #E50914;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.nav-item {
+    color: #ffffff;
+    font-size: 1rem;
+}
+
+/* Search Section */
+.search-section {
+    padding: 40px 0 20px;
+}
+
+.search-wrapper {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.search-input {
+    width: 100%;
+    padding: 15px 20px;
+    font-size: 1rem;
+    background-color: #2a2a2a;
+    border: 2px solid #3a3a3a;
+    border-radius: 4px;
+    color: #ffffff;
+    transition: border-color 0.3s;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: #E50914;
+}
+
+.search-input::placeholder {
+    color: #888;
+}
+
+/* Main Content */
+.main-content {
+    padding: 20px 0 60px;
+}
+
+.section-title {
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+/* Drama Grid */
+.drama-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 20px;
+}
+
+/* Drama Card */
+.drama-card {
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #1a1a1a;
+}
+
+.drama-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(229, 9, 20, 0.3);
+}
+
+.drama-poster {
+    width: 100%;
+    aspect-ratio: 2/3;
+    object-fit: cover;
+    display: block;
+}
+
+.drama-info {
+    padding: 15px;
+}
+
+.drama-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.drama-rating {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    color: #ffd700;
+}
+
+.drama-year {
+    color: #888;
+    font-size: 0.85rem;
+    margin-top: 4px;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    overflow-y: auto;
+}
+
+.modal.active {
+    display: block;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+}
+
+.modal-content {
+    position: relative;
+    max-width: 1000px;
+    margin: 40px auto;
+    background-color: #1a1a1a;
+    border-radius: 8px;
+    overflow: hidden;
+    animation: modalSlideIn 0.3s ease;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: #2a2a2a;
+    border: none;
+    color: #ffffff;
+    font-size: 2rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+    transition: background-color 0.3s;
+}
+
+.modal-close:hover {
+    background-color: #E50914;
+}
+
+.modal-body {
+    display: flex;
+    gap: 30px;
+    padding: 30px;
+}
+
+.modal-poster {
+    flex-shrink: 0;
+    width: 300px;
+}
+
+.modal-poster img {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.modal-details {
+    flex: 1;
+    overflow-y: auto;
+    max-height: 80vh;
+}
+
+.modal-title {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+.modal-info {
+    margin-bottom: 25px;
+}
+
+.info-item {
+    display: flex;
+    margin-bottom: 10px;
+    font-size: 1rem;
+}
+
+.info-label {
+    font-weight: 600;
+    color: #888;
+    min-width: 100px;
+}
+
+.rating-stars {
+    color: #ffd700;
+    margin-right: 8px;
+}
+
+.rating-score {
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.synopsis {
+    margin-bottom: 30px;
+}
+
+.synopsis h3 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    color: #E50914;
+}
+
+.synopsis p {
+    color: #cccccc;
+    line-height: 1.8;
+}
+
+/* Review Form */
+.review-form {
+    background-color: #2a2a2a;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+
+.review-form h3 {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    color: #E50914;
+}
+
+.star-rating {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 15px;
+    font-size: 2rem;
+}
+
+.star {
+    cursor: pointer;
+    color: #555;
+    transition: color 0.2s;
+}
+
+.star:hover,
+.star.active {
+    color: #ffd700;
+}
+
+.review-textarea {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    background-color: #1a1a1a;
+    border: 2px solid #3a3a3a;
+    border-radius: 4px;
+    color: #ffffff;
+    resize: vertical;
+    min-height: 60px;
+    font-family: inherit;
+}
+
+.review-textarea:focus {
+    outline: none;
+    border-color: #E50914;
+}
+
+.submit-btn {
+    margin-top: 10px;
+    padding: 12px 30px;
+    background-color: #E50914;
+    border: none;
+    border-radius: 4px;
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submit-btn:hover {
+    background-color: #b00710;
+}
+
+/* Reviews Section */
+.reviews-section {
+    margin-top: 30px;
+}
+
+.reviews-section h3 {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    color: #E50914;
+}
+
+.reviews-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.review-item {
+    background-color: #2a2a2a;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 3px solid #E50914;
+}
+
+.review-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.review-stars {
+    color: #ffd700;
+    font-size: 0.9rem;
+}
+
+.review-date {
+    color: #888;
+    font-size: 0.85rem;
+}
+
+.review-text {
+    color: #cccccc;
+    line-height: 1.6;
+}
+
+.no-reviews {
+    color: #888;
+    font-style: italic;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .drama-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+
+    .modal-body {
+        flex-direction: column;
+    }
+
+    .modal-poster {
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .logo {
+        font-size: 1.5rem;
+    }
+
+    .section-title {
+        font-size: 1.4rem;
+    }
+
+    .drama-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 15px;
+    }
+
+    .modal-content {
+        margin: 20px;
+    }
+
+    .modal-body {
+        padding: 20px;
+    }
+
+    .modal-title {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .drama-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .drama-info {
+        padding: 10px;
+    }
+
+    .drama-title {
+        font-size: 0.95rem;
+    }
+}
